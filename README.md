@@ -42,6 +42,11 @@ myapp/
     [urls.py]
 ```
 We add a separate "urls.py" for each app
+## Django admin site
+We can crate a superuser which is acting as an admin for the website
+```Shell
+python manage.py createsuperuser
+```
 ## Run development server
 In order to start the build-in development webserver use the following command
 ```Shell
