@@ -1,4 +1,4 @@
-# coderef-django
+# Code Reference for Django
 ## Install the Django package via pip
 ```Shell
 python -m pip install Django
