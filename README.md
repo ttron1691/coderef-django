@@ -12,14 +12,15 @@ django-admin startproject myproject
 ```
 This gives you the following structure of files
 ```
-mysite/
-    manage.py
-    mysite/
-        __init__.py
-        settings.py
-        urls.py
-        asgi.py
-        wsgi.py
+myproject/
+    myproject/
+        manage.py
+        myproject/
+            __init__.py
+            settings.py
+            urls.py
+            asgi.py
+            wsgi.py
 ```
 ## Create a new app
 Create a new app within the existing Django project
@@ -30,16 +31,25 @@ python manage.py startapp myapp
 ```
 which results in the following file structure
 ```
-myapp/
-    __init__.py
-    admin.py
-    apps.py
-    migrations/
+myproject/
+    myproject/
+        manage.py
+        myproject/
+            __init__.py
+            settings.py
+            urls.py
+            asgi.py
+            wsgi.py
+    myapp/
         __init__.py
-    models.py
-    tests.py
-    views.py
-    [urls.py]
+        admin.py
+        apps.py
+        migrations/
+            __init__.py
+        models.py
+        tests.py
+        views.py
+        [urls.py]
 ```
 We add a separate "urls.py" for each app
 ## Django admin site
