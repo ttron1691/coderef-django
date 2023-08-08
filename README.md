@@ -85,7 +85,6 @@ with the default development webserver port number 8000.
 ## URLS
 As already mentioned, it is good practice to add a separate urls.py file for each app. The corresponding file "myapp/urls.py" may look as follows
 ```Python
-from django.contrib import admin
 from django.urls import path, include
 from . import views
 
@@ -103,6 +102,7 @@ urlpatterns = [
     path('', include("myapp.urls")),
 ]
 ```
+For each app we include the corresponding "urls.py" file within the app directory.
 ## Templates
 It is good practice to create a base html template "templates/myapp/base.html" and derive all other template files.
 
