@@ -3,6 +3,10 @@
 ```Shell
 python -m pip install Django
 ```
+## Check Version
+```Shell
+python -m django --version
+```
 ## Create new Django Project
 Start a new django project via the following command in 
 ```Shell
@@ -50,10 +54,21 @@ myproject/
         [urls.py]
 ```
 We add a separate "urls.py" for each app
+## Migrate
+In order to migrate changes with respect to the database we can run
+```Python
+python manage.py migrate
+```
 ## Django admin site
 We can crate a superuser which is acting as an admin for the website
 ```Shell
 python manage.py createsuperuser
+```
+The superuser is able to login to the admin platform which is available under the following URL
+```
+[URL]:[PORT]/admin
+# Example
+0.0.0.0:8000/admin
 ```
 ## Run development server
 In order to start the build-in development webserver use the following command
