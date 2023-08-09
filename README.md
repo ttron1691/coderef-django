@@ -174,7 +174,7 @@ def form_validation(request):
         form = MyForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, "template_redicted.html", {})
+            return render(request, "template_redirected.html", {})
     else:
         form = MyForm()
         return render(request, "template_form.html", {"form": form})
