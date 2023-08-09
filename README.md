@@ -51,7 +51,7 @@ myproject/
         models.py
         tests.py
         views.py
-        [urls.py]
+        [urls.py]    # added manually
 ```
 We add a separate "urls.py" for each app
 ## Migrate
@@ -90,6 +90,8 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('projects/', views.project, name='project'),
+    path('about/', views.about, name='about') 
 ]
 ```
 The global project "myproject/urls.py" file looks as follows
@@ -111,6 +113,12 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, "myapp/index.html", {})
+
+def project(request):
+    return render(request, "myapp/project.html", {})
+
+def about(request):
+    return render(request, "myapp/about.html", {})
 ```
 ### Class based views
 ## Templates
@@ -126,6 +134,33 @@ Index
 <div class="container">
 </div>
 {% endblock %}
+```
+The full directory including templates is given by
+```
+myproject/
+    manage.py
+    myproject/    
+        __init__.py
+        settings.py
+        urls.py
+        asgi.py
+        wsgi.py
+    myapp/
+        __init__.py
+        admin.py
+        apps.py
+        migrations/
+            __init__.py
+        models.py
+        tests.py
+        views.py
+        urls.py
+        templates/
+            myapp/
+                base.html
+                index.html
+                project.html
+                about.html
 ```
 ## Forms
 ### Form validation
@@ -145,13 +180,44 @@ def form_validation(request):
         return render(request, "template_form.html", {"form": form})
 ```
 ## Static files
-If we want to serve static files (e.g. css styles, images) we can create a separate static directory for each app analogously to the templates directory. For instance, we want to include additional style files "static/myapp/my_style.css", we can refer to this style file as follows
+If we want to serve static files (e.g. css styles, images) we can create a separate static directory for each app analogously to the templates directory. For instance, we want to include additional style files "static/myapp/style.css", we can refer to this style file as follows
 ```HTML
 {% load static %}
-<link rel="stylesheet" href="{% static 'myapp/my_style.css' %}">
+<link rel="stylesheet" href="{% static 'myapp/style.css' %}">
 ```
 The same is true for images, e.g. if we consider an image "static/myapp/img1.png", we can serve the image via
 ```HTML
 {% load static %}
 <img src="{% static 'myapp/img1.png' %}" alt="My image">
+```
+The file structure including templates and static files looks as follows
+```
+myproject/
+    manage.py
+    myproject/    
+        __init__.py
+        settings.py
+        urls.py
+        asgi.py
+        wsgi.py
+    myapp/
+        __init__.py
+        admin.py
+        apps.py
+        migrations/
+            __init__.py
+        models.py
+        tests.py
+        views.py
+        urls.py
+        templates/
+            myapp/
+                base.html
+                index.html
+                project.html
+                about.html
+        static/
+            myapp/
+                style.css
+                img1.png
 ```
