@@ -103,10 +103,18 @@ urlpatterns = [
 ]
 ```
 For each app we include the corresponding "urls.py" file within the app directory.
-## Templates
-It is good practice to create a base html template "templates/myapp/base.html" and derive all other template files.
+## Views
+### Method based views
+We add the following content to "myapp/views.py" in order to serve the templates
+```Python
+from django.shortcuts import render
 
-A base html template "myapp/templates/myapp/index.html" can be created as follows
+def index(request):
+    return render(request, "myapp/index.html", {})
+```
+### Class based views
+## Templates
+It is good practice to create a base html template "templates/myapp/base.html" and derive all other template files. A basic index html website "myapp/templates/myapp/index.html" can then be created as follows
 ```html
 {% extends 'myapp/base.html' %}
 
@@ -119,14 +127,31 @@ Index
 </div>
 {% endblock %}
 ```
-## Views
-We add the following content to "myapp/views.py" in order to serve the templates
+## Forms
+### Form validation
+We may validate a given form as follows within a defined method in "views.py"
 ```Python
 from django.shortcuts import render
+from .forms import MyForm
 
-def index(request):
-    return render(request, "myapp/index.html", {})
+def form_validation(request):
+    if request.method == "POST":
+        form = MyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, "template_redicted.html", {})
+    else:
+        form = MyForm()
+        return render(request, "template_form.html", {"form": form})
 ```
-## Create templates
-
-## Create static files
+## Static files
+If we want to serve static files (e.g. css styles, images) we can create a separate static directory for each app analogously to the templates directory. For instance, we want to include additional style files "static/myapp/my_style.css", we can refer to this style file as follows
+```HTML
+{% load static %}
+<link rel="stylesheet" href="{% static 'myapp/my_style.css' %}">
+```
+The same is true for images, e.g. if we consider an image "static/myapp/img1.png", we can serve the image via
+```HTML
+{% load static %}
+<img src="{% static 'myapp/img1.png' %}" alt="My image">
+```
