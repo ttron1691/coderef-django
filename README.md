@@ -121,6 +121,27 @@ def about(request):
     return render(request, "myapp/about.html", {})
 ```
 ### Class based views
+## Models
+We can define models which are translated to corresponding tables in the application database. 
+
+As an example, we may consider a model for a person including character fields for the first and last name. The constructor can be overwritten if necessary as well
+```Python
+from django.db import models
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+
+class Blog(models.Model):
+    name = models.CharField(max_length=100)
+    tagline = models.TextField()
+
+    def save(self, *args, **kwargs):
+        if self.name == "John":
+            return
+        else:
+            super().save(*args, **kwargs)  # Call the "real" save() method.
+```
 ## Templates
 It is good practice to create a base html template "templates/myapp/base.html" and derive all other template files. A basic index html website "myapp/templates/myapp/index.html" can then be created as follows
 ```html
